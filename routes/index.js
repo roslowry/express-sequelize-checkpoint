@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 var Article = require('../models/article');
+var articlesRouter = require('./articles')
+
+
 
 /**
  *
@@ -12,6 +15,9 @@ var Article = require('../models/article');
  *
  *
  */
+
+router.use('/articles', articlesRouter)
+
 
 
 module.exports = router;
