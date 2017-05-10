@@ -25,12 +25,14 @@ var Article = db.define('article', {
   //   type: Sequelize.INTEGER,
   //   defaultValue: return this.numUpdates()
   // }
+
+  /* Close! We just have to set the defaultValue to 0 */
 },
 {
   getterMethods: {
     snippet: function() {
       if (!this.content) return '';
-      return this.content.slice(0, 23) + '...'
+      return this.content.slice(0, 23) + '...' //watch your semicolon usage
     }
   },
   instanceMethods: {
@@ -44,14 +46,16 @@ var Article = db.define('article', {
         where: {
           title: title
         }
-      })
+      }) //;
     }
   },
   hooks: {
     // numUpdates: function() {
     //
     // }
-
+    /*Look over hooks in the Sequelize Docs: http://docs.sequelizejs.com/en/v3/docs/hooks/
+    We have to start our hooks with the type of hook they are, so sequelize knows when to call them.  for this one, we need to start with beforeUpdate, then we can define a function that takes an article as an arg, and increments the version of that article.
+    */
   }
 }
 );
